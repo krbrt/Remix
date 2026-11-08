@@ -1,0 +1,432 @@
+{
+	"compiler": {
+		"version": "0.8.34+commit.80d5c536"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newMultiplier",
+						"type": "uint256"
+					}
+				],
+				"name": "MultiplierUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "tier",
+						"type": "uint8"
+					}
+				],
+				"name": "PointsEarned",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "PointsRedeemed",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "oldTier",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "newTier",
+						"type": "uint8"
+					}
+				],
+				"name": "TierChanged",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "balanceOf",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "earnPoints",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMinRedemption",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMultiplier",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "getTier",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "tier",
+						"type": "uint8"
+					}
+				],
+				"name": "getTierMultiplier",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "tier",
+						"type": "uint8"
+					}
+				],
+				"name": "getTierThreshold",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "pause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "redeemPoints",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "setMinRedemption",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newMultiplier",
+						"type": "uint256"
+					}
+				],
+				"name": "setMultiplier",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "totalPointsEarned",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "unpause",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Interface for the RewardPoints contract. Defines all external functions, events, and errors for the Reward Points System.",
+			"kind": "dev",
+			"methods": {
+				"balanceOf(address)": {
+					"params": {
+						"user": "The address to check"
+					},
+					"returns": {
+						"_0": "balance Current redeemable points balance"
+					}
+				},
+				"earnPoints(address,uint256)": {
+					"params": {
+						"amount": "The base amount of points to award (before multiplier)",
+						"user": "The address to award points to"
+					}
+				},
+				"getTier(address)": {
+					"params": {
+						"user": "The address to check"
+					},
+					"returns": {
+						"_0": "tier The current tier (0=Bronze, 1=Silver, 2=Gold, 3=Platinum)"
+					}
+				},
+				"getTierMultiplier(uint8)": {
+					"params": {
+						"tier": "The tier to get multiplier for"
+					}
+				},
+				"getTierThreshold(uint8)": {
+					"params": {
+						"tier": "The tier to get threshold for"
+					}
+				},
+				"redeemPoints(uint256)": {
+					"params": {
+						"amount": "The amount of points to redeem"
+					}
+				},
+				"setMinRedemption(uint256)": {
+					"params": {
+						"amount": "The new minimum redemption amount"
+					}
+				},
+				"setMultiplier(uint256)": {
+					"params": {
+						"newMultiplier": "The new multiplier value"
+					}
+				},
+				"totalPointsEarned(address)": {
+					"params": {
+						"user": "The address to check"
+					},
+					"returns": {
+						"_0": "totalPoints Total lifetime points earned"
+					}
+				}
+			},
+			"title": "IRewardPoints",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"MultiplierUpdated(uint256)": {
+					"notice": "Emitted when the global multiplier is updated by the owner"
+				},
+				"PointsEarned(address,uint256,uint8)": {
+					"notice": "Emitted when points are earned by a user"
+				},
+				"PointsRedeemed(address,uint256)": {
+					"notice": "Emitted when points are redeemed by a user"
+				},
+				"TierChanged(address,uint8,uint8)": {
+					"notice": "Emitted when a user's tier changes"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"balanceOf(address)": {
+					"notice": "Returns the current redeemable points balance of a user"
+				},
+				"earnPoints(address,uint256)": {
+					"notice": "Awards points to a user (callable by owner or minter role)"
+				},
+				"getMinRedemption()": {
+					"notice": "Returns the current minimum redemption threshold"
+				},
+				"getMultiplier()": {
+					"notice": "Returns the current global multiplier (basis points)"
+				},
+				"getTier(address)": {
+					"notice": "Returns the current tier of a user"
+				},
+				"getTierMultiplier(uint8)": {
+					"notice": "Returns the multiplier for a given tier (basis points)"
+				},
+				"getTierThreshold(uint8)": {
+					"notice": "Returns the points threshold required for a given tier"
+				},
+				"pause()": {
+					"notice": "Pauses all user-facing functions"
+				},
+				"redeemPoints(uint256)": {
+					"notice": "Redeems points for rewards (callable by the point holder)"
+				},
+				"setMinRedemption(uint256)": {
+					"notice": "Sets the minimum redemption threshold"
+				},
+				"setMultiplier(uint256)": {
+					"notice": "Sets the global earning multiplier (basis points, 10000 = 1x)"
+				},
+				"totalPointsEarned(address)": {
+					"notice": "Returns the total points earned by a user (lifetime)"
+				},
+				"unpause()": {
+					"notice": "Unpauses all user-facing functions"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IRewardPoints.sol": "IRewardPoints"
+		},
+		"evmVersion": "osaka",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IRewardPoints.sol": {
+			"keccak256": "0xd65da57a7f0cc02b788a0980b9d407c34de1fd8450105d708f2631358471d1e2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://dd0a7dd3672f43d80defb0994f9d6980f948988b3e6df7676efefb3aeecba0c4",
+				"dweb:/ipfs/QmZgiDVMS5wiGcnwbJagvArk4njYcdJ4wPB5y8VYgXr2mx"
+			]
+		}
+	},
+	"version": 1
+}
