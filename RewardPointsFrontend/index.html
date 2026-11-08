@@ -1,0 +1,258 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RewardPoints | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">R</div>
+                <span>Reward<span class="logo-highlight">Points</span></span>
+            </div>
+
+            <div class="sidebar-label">MENU</div>
+
+            <nav class="navigation">
+                <a href="#dashboard" class="nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+                <a href="#earn" class="nav-link">
+                    <span>＋</span> Earn Points
+                </a>
+                <a href="#redeem" class="nav-link">
+                    <span>♧</span> Redeem Points
+                </a>
+                <a href="#transactions" class="nav-link">
+                    <span>↔</span> Transactions
+                </a>
+                <a href="#membership" class="nav-link">
+                    <span>♛</span> Membership
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="network-status">
+                    <span class="status-dot"></span>
+                    <div>
+                        <strong>Remix VM</strong>
+                        <small>Development Network</small>
+                    </div>
+                </div>
+                <p class="sidebar-footer">RewardPoints System v1.0</p>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content" id="dashboard">
+
+            <!-- TOPBAR -->
+            <header class="topbar">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Welcome to your Reward Points account!</p>
+                </div>
+
+                <button class="wallet-button" id="connectWallet">
+                    <span>◉</span> Connect Wallet
+                </button>
+            </header>
+
+            <!-- WELCOME SECTION -->
+            <section class="welcome-banner">
+                <div>
+                    <p class="welcome-label">YOUR REWARDS, YOUR BENEFITS</p>
+                    <h1>Welcome to RewardPoints!</h1>
+                    <p>Earn points, unlock rewards, and enjoy exclusive benefits.</p>
+                </div>
+                <div class="banner-icon">★</div>
+            </section>
+
+            <!-- STAT CARDS -->
+            <section class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Total Points Balance</span>
+                        <div class="stat-icon blue">★</div>
+                    </div>
+                    <h2 id="pointsBalance">0</h2>
+                    <p>Available reward points</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Total Points Earned</span>
+                        <div class="stat-icon green">↗</div>
+                    </div>
+                    <h2 id="totalEarned">0</h2>
+                    <p>Lifetime points earned</p>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-top">
+                        <span>Membership Tier</span>
+                        <div class="stat-icon gold">♛</div>
+                    </div>
+                    <h2 id="membershipTier">Bronze</h2>
+                    <p>Your current membership level</p>
+                </div>
+
+            </section>
+
+            <!-- EARN AND REDEEM -->
+            <section class="action-grid">
+
+                <div class="content-card" id="earn">
+                    <div class="card-heading">
+                        <div>
+                            <h3>Earn Points</h3>
+                            <p>Get reward points through activities.</p>
+                        </div>
+                        <div class="heading-icon earn-icon">＋</div>
+                    </div>
+
+                    <form id="earnForm">
+                        <label for="earnAddress">User Wallet Address</label>
+                        <input
+                            type="text"
+                            id="earnAddress"
+                            placeholder="Enter wallet address (0x...)"
+                            required
+                        >
+
+                        <label for="earnAmount">Points to Earn</label>
+                        <input
+                            type="number"
+                            id="earnAmount"
+                            placeholder="Enter points"
+                            min="1"
+                            required
+                        >
+
+                        <button type="submit" class="primary-button">
+                            Earn Points
+                        </button>
+                    </form>
+                    <p class="form-note">Requires authorized MINTER_ROLE.</p>
+                </div>
+
+                <div class="content-card" id="redeem">
+                    <div class="card-heading">
+                        <div>
+                            <h3>Redeem Points</h3>
+                            <p>Use your available reward points.</p>
+                        </div>
+                        <div class="heading-icon redeem-icon">↗</div>
+                    </div>
+
+                    <form id="redeemForm">
+                        <label for="redeemAmount">Points to Redeem</label>
+                        <input
+                            type="number"
+                            id="redeemAmount"
+                            placeholder="Enter points"
+                            min="1"
+                            required
+                        >
+
+                        <div class="available-points">
+                            Available Points: <strong id="availablePoints">0</strong>
+                        </div>
+
+                        <button type="submit" class="secondary-button">
+                            Redeem Points
+                        </button>
+                    </form>
+                    <p class="form-note">Subject to your contract's redemption rules.</p>
+                </div>
+
+            </section>
+
+            <!-- MEMBERSHIP -->
+            <section class="content-card membership-card" id="membership">
+                <div class="card-heading">
+                    <div>
+                        <h3>Membership Levels</h3>
+                        <p>Earn more points to unlock higher membership tiers.</p>
+                    </div>
+                </div>
+
+                <div class="tier-grid">
+                    <div class="tier-item bronze">
+                        <div class="tier-symbol">♛</div>
+                        <h4>Bronze</h4>
+                        <p>Starting Tier</p>
+                    </div>
+
+                    <div class="tier-item silver">
+                        <div class="tier-symbol">♛</div>
+                        <h4>Silver</h4>
+                        <p>Next Level</p>
+                    </div>
+
+                    <div class="tier-item gold-tier">
+                        <div class="tier-symbol">♛</div>
+                        <h4>Gold</h4>
+                        <p>Premium Level</p>
+                    </div>
+
+                    <div class="tier-item platinum">
+                        <div class="tier-symbol">♛</div>
+                        <h4>Platinum</h4>
+                        <p>Highest Level</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TRANSACTIONS -->
+            <section class="content-card transactions-card" id="transactions">
+                <div class="card-heading">
+                    <div>
+                        <h3>Recent Transactions</h3>
+                        <p>Your recent points activity.</p>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Transaction</th>
+                                <th>Type</th>
+                                <th>Points</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionList">
+                            <tr>
+                                <td colspan="5" class="empty-state">
+                                    No transactions yet. Connect your wallet to get started.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <footer class="main-footer">
+                <p>© 2026 RewardPoints System. Powered by Blockchain Technology.</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
