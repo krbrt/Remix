@@ -2,6 +2,20 @@
   "@openzeppelin/contracts/access/Ownable.sol": {
     "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol"
   },
+  "@openzeppelin/contracts/access/AccessControl.sol": {
+    "./IAccessControl.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/access/IAccessControl.sol",
+    "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol",
+    "../utils/introspection/ERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/ERC165.sol"
+  },
+  "@openzeppelin/contracts/utils/introspection/ERC165.sol": {
+    "./IERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/IERC165.sol"
+  },
+  "@openzeppelin/contracts/utils/Pausable.sol": {
+    "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol"
+  },
+  "@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
+    "./StorageSlot.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/StorageSlot.sol"
+  },
   "@openzeppelin/contracts@5.6.1/access/Ownable.sol": {
     "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol"
   },
@@ -58,40 +72,18 @@
       }
     }
   },
-  "@openzeppelin/contracts/access/AccessControl.sol": {
-    "./IAccessControl.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/access/IAccessControl.sol",
-    "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol",
-    "../utils/introspection/ERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/ERC165.sol"
-  },
   "@openzeppelin/contracts@5.6.1/access/AccessControl.sol": {
     "./IAccessControl.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/access/IAccessControl.sol",
     "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol",
     "../utils/introspection/ERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/ERC165.sol"
   },
-  "@openzeppelin/contracts/utils/introspection/ERC165.sol": {
-    "./IERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/IERC165.sol"
-  },
   "@openzeppelin/contracts@5.6.1/utils/introspection/ERC165.sol": {
     "./IERC165.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/introspection/IERC165.sol"
-  },
-  "@openzeppelin/contracts/utils/Pausable.sol": {
-    "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol"
   },
   "@openzeppelin/contracts@5.6.1/utils/Pausable.sol": {
     "../utils/Context.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/Context.sol"
   },
-  "@openzeppelin/contracts/utils/ReentrancyGuard.sol": {
-    "./StorageSlot.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/StorageSlot.sol"
-  },
   "@openzeppelin/contracts@5.6.1/utils/ReentrancyGuard.sol": {
     "./StorageSlot.sol": ".deps/npm/@openzeppelin/contracts@5.6.1/utils/StorageSlot.sol"
-  },
-  "contracts/interfaces/IRewardPoints.sol": {
-    "__sources__": {
-      "contracts/interfaces/IRewardPoints.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n/**\r\n * @title IRewardPoints\r\n * @dev Interface for the RewardPoints contract.\r\n * Defines all external functions, events, and errors for the Reward Points System.\r\n */\r\ninterface IRewardPoints {\r\n    // ========== Events ==========\r\n\r\n    /// @notice Emitted when points are earned by a user\r\n    event PointsEarned(address indexed user, uint256 amount, uint8 tier);\r\n\r\n    /// @notice Emitted when points are redeemed by a user\r\n    event PointsRedeemed(address indexed user, uint256 amount);\r\n\r\n    /// @notice Emitted when a user's tier changes\r\n    event TierChanged(address indexed user, uint8 oldTier, uint8 newTier);\r\n\r\n    /// @notice Emitted when the global multiplier is updated by the owner\r\n    event MultiplierUpdated(uint256 newMultiplier);\r\n\r\n    // ========== External Functions ==========\r\n\r\n    /// @notice Awards points to a user (callable by owner or minter role)\r\n    /// @param user The address to award points to\r\n    /// @param amount The base amount of points to award (before multiplier)\r\n    function earnPoints(address user, uint256 amount) external;\r\n\r\n    /// @notice Redeems points for rewards (callable by the point holder)\r\n    /// @param amount The amount of points to redeem\r\n    function redeemPoints(uint256 amount) external;\r\n\r\n    /// @notice Sets the global earning multiplier (basis points, 10000 = 1x)\r\n    /// @param newMultiplier The new multiplier value\r\n    function setMultiplier(uint256 newMultiplier) external;\r\n\r\n    /// @notice Sets the minimum redemption threshold\r\n    /// @param amount The new minimum redemption amount\r\n    function setMinRedemption(uint256 amount) external;\r\n\r\n    /// @notice Pauses all user-facing functions\r\n    function pause() external;\r\n\r\n    /// @notice Unpauses all user-facing functions\r\n    function unpause() external;\r\n\r\n    // ========== View Functions ==========\r\n\r\n    /// @notice Returns the current tier of a user\r\n    /// @param user The address to check\r\n    /// @return tier The current tier (0=Bronze, 1=Silver, 2=Gold, 3=Platinum)\r\n    function getTier(address user) external view returns (uint8);\r\n\r\n    /// @notice Returns the total points earned by a user (lifetime)\r\n    /// @param user The address to check\r\n    /// @return totalPoints Total lifetime points earned\r\n    function totalPointsEarned(address user) external view returns (uint256);\r\n\r\n    /// @notice Returns the current redeemable points balance of a user\r\n    /// @param user The address to check\r\n    /// @return balance Current redeemable points balance\r\n    function balanceOf(address user) external view returns (uint256);\r\n\r\n    /// @notice Returns the current global multiplier (basis points)\r\n    function getMultiplier() external view returns (uint256);\r\n\r\n    /// @notice Returns the current minimum redemption threshold\r\n    function getMinRedemption() external view returns (uint256);\r\n\r\n    /// @notice Returns the multiplier for a given tier (basis points)\r\n    /// @param tier The tier to get multiplier for\r\n    function getTierMultiplier(uint8 tier) external view returns (uint256);\r\n\r\n    /// @notice Returns the points threshold required for a given tier\r\n    /// @param tier The tier to get threshold for\r\n    function getTierThreshold(uint8 tier) external view returns (uint256);\r\n}",
-        "file": "contracts/interfaces/IRewardPoints.sol"
-      }
-    }
   }
 }
